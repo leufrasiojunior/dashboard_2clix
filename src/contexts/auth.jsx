@@ -13,6 +13,15 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const recoveredUser = localStorage.getItem("token");
         const token = localStorage.getItem("token")
+        const currentDateTime = new Date();
+        const futureDateTime = new Date(currentDateTime);
+        futureDateTime.setHours(currentDateTime.getHours() + 24);
+
+        console.log(currentDateTime.getTime())
+        if (currentDateTime > localStorage.getItem('ExpirationDate')) {
+            logout();
+        }
+
         if (recoveredUser) {
             setUser(recoveredUser)
             api.defaults.headers.Authorization = `Bearer ${token}`;
@@ -22,15 +31,19 @@ export const AuthProvider = ({ children }) => {
 
     const newLogin = async (usuario, senha) => {
         const response = await CreateSession(usuario, senha)
-        // console.log('response', response)
         const token = response.data.token;
-        // console.log(response.data.token);
         const loggedUser = response.data.token
+        const currentDateTime = new Date();
+        const futureDateTime = new Date(currentDateTime);
 
+
+        localStorage.setItem('Logged', currentDateTime);
+        localStorage.setItem('ExpirationDate', futureDateTime);
         localStorage.setItem('token', loggedUser);
         api.defaults.headers.Authorization = `Bearer ${token}`;
         setUser(loggedUser)
         navigate("/home")
+
     }
     const logout = () => {
         console.log('logout');
