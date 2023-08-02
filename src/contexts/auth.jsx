@@ -17,9 +17,12 @@ export const AuthProvider = ({ children }) => {
         const futureDateTime = new Date(currentDateTime);
         futureDateTime.setHours(currentDateTime.getHours() + 24);
 
-        console.log(currentDateTime.getTime())
-        if (currentDateTime > localStorage.getItem('ExpirationDate')) {
+        const DateFinal = Date.parse(localStorage.getItem('ExpirationDate'))
+        const DateToday = Date.parse(futureDateTime)
+
+        if (DateToday > DateFinal) {
             logout();
+            alert("A sessão expirou. Faça login novamente")
         }
 
         if (recoveredUser) {
@@ -35,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         const loggedUser = response.data.token
         const currentDateTime = new Date();
         const futureDateTime = new Date(currentDateTime);
+        futureDateTime.setHours(currentDateTime.getHours() + 24)
 
 
         localStorage.setItem('Logged', currentDateTime);
