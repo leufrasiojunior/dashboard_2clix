@@ -77,3 +77,15 @@ width:100%;
       opacity: 0.7;
     }
 `
+
+export const Eye = styled.span`
+display: flex;
+color: #fff;
+justify-content: center;
+align-items: center;
+`
+export const Eyeicon = styled.div`
+position: fixed;
+margin-bottom: 115px;
+margin-left: 290px;
+`
