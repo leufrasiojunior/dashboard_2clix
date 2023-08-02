@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/auth'
-import { ResumoAvaliacoes } from '../../services/api';
+import { BaseResumida } from '../../services/api';
 
 function HomePage() {
 
@@ -10,9 +10,8 @@ function HomePage() {
     const [isLoading, setisLoading] = useState(true)
     useEffect(() => {
         (async () => {
-            const response = await ResumoAvaliacoes();
-            console.log(response.data)
-            setNotas(response.data);
+            const response = await BaseResumida();
+            setNotas(response.data.result);
             setisLoading(false);
         })();
     }, [])
@@ -35,7 +34,7 @@ function HomePage() {
                         {notas.NOTA}
                     </li>
                 ))} */}
-                {JSON.stringify(notas)}
+                {notas.map(d => (<li key={d.CODIGO_AVALIACAO}>{d.CRITERIO}</li>))}
             </ul>
         </>
     )

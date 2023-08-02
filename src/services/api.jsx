@@ -9,6 +9,6 @@ export const CreateSession = async (login, senha) => {
     return api.post('Usuario/login', { login, senha })
 }
 
-export const ResumoAvaliacoes = async () => {
-    return api.get('/Reports/ResumoAvaliacoes?Dtinicio=2023-07-03&DtFim=2023-07-03&codTipoFicha=1')
+export const BaseResumida = async () => {
+    return api.get('Reports/ExtracaoBaseResumida?Dtinicio=2023-07-03&DtFim=2023-07-03&codTipoFicha=1')
 }
