@@ -1,18 +1,22 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth'
 import { Container, Form, BotaoCustomizado, InputCustomizado, Eye, Eyeicon } from './style';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye'
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
     const { authenticated, newLogin } = useContext(AuthContext);
     const [login, setLogin] = useState('')
     const [senha, setSenha] = useState('')
-    const [showpass, setShowpass] = useState(false)
     const [type, setType] = useState('password');
     const [icon, setIcon] = useState(eyeOff);
+    const navigate = useNavigate();
+    const currentDateTime = new Date();
+    const DateToday = Date.parse(currentDateTime)
+    const DateFinal = Date.parse(localStorage.getItem('ExpirationDate'))
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -28,6 +32,12 @@ function LoginPage() {
         }
 
     };
+
+    useEffect(() => {
+        if (DateToday < DateFinal) {
+            navigate("/home")
+        }
+    }, [])
     return (
         <Container>
             <Form className="form" onSubmit={handleSubmit}>
@@ -51,7 +61,6 @@ function LoginPage() {
                         <Icon className="absolute mr-10" icon={icon} size={25} />
                     </Eyeicon>
                 </Eye>
-
                 <BotaoCustomizado type="submit">Entrar</BotaoCustomizado>
             </Form >
         </Container >
