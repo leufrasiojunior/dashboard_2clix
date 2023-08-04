@@ -13,6 +13,7 @@ function HomePage() {
             const response = await BaseResumida();
             setNotas(response.data.result);
             setisLoading(false);
+
         })();
     }, [])
 
@@ -23,20 +24,15 @@ function HomePage() {
     if (isLoading) {
         return <div>Carregando Notas...</div>;
     }
-    console.log(notas)
+    // console.log(notas)
+    // const jsonData = localStorage.setItem('jsonData', JSON.stringify(notas))
+    // console.log('jsonData')
     const uniqueAuthors = [...new Map(notas.map(v => [v.CRITERIO, v])).values()]
-    console.log('uniqueAuthors :: ', uniqueAuthors)
     return (
         <>
-            <div>HomePage Novo</div>
+
             <button onClick={handleLogout}>Logout</button>
             <ul>
-                {/* {
-                notas.map((n) => (
-                    <li key={notas.COD_MONITORIA}>
-                        {notas.NOTA}
-                    </li>
-                ))} */}
                 {uniqueAuthors.map(d => (<li key={d.CODIGO_AVALIACAO}>{d.CRITERIO}</li>))}
             </ul>
         </>
