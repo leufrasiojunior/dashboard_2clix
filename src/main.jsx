@@ -5,11 +5,11 @@ import GlobalStyle from './assets/styles/globalstyle';
 import { HeaderTop } from '../src/assets/styles/HeaderTop.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <>
-    <HeaderTop />
-    <GlobalStyle />
-    <App />
-  </>
-  // {/* </React.StrictMode>, */ }
+  <React.StrictMode>
+    <>
+      <HeaderTop />
+      <GlobalStyle />
+      <App />
+    </>
+  </React.StrictMode>
 )

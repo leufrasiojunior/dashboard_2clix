@@ -23,6 +23,9 @@ function HomePage() {
     if (isLoading) {
         return <div>Carregando Notas...</div>;
     }
+    console.log(notas)
+    const uniqueAuthors = [...new Map(notas.map(v => [v.CRITERIO, v])).values()]
+    console.log('uniqueAuthors :: ', uniqueAuthors)
     return (
         <>
             <div>HomePage Novo</div>
@@ -34,7 +37,7 @@ function HomePage() {
                         {notas.NOTA}
                     </li>
                 ))} */}
-                {notas.map(d => (<li key={d.CODIGO_AVALIACAO}>{d.CRITERIO}</li>))}
+                {uniqueAuthors.map(d => (<li key={d.CODIGO_AVALIACAO}>{d.CRITERIO}</li>))}
             </ul>
         </>
     )

@@ -17,8 +17,8 @@ export const AuthProvider = ({ children }) => {
         const futureDateTime = new Date(currentDateTime);
         futureDateTime.setHours(currentDateTime.getHours() + 24);
 
+        const DateToday = Date.parse(currentDateTime)
         const DateFinal = Date.parse(localStorage.getItem('ExpirationDate'))
-        const DateToday = Date.parse(futureDateTime)
 
         if (DateToday > DateFinal) {
             logout();
@@ -40,7 +40,6 @@ export const AuthProvider = ({ children }) => {
         const futureDateTime = new Date(currentDateTime);
         futureDateTime.setHours(currentDateTime.getHours() + 24)
 
-
         localStorage.setItem('Logged', currentDateTime);
         localStorage.setItem('ExpirationDate', futureDateTime);
         localStorage.setItem('token', loggedUser);
@@ -50,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 
     }
     const logout = () => {
-        console.log('logout');
+        // console.log('logout');
         api.defaults.headers.Authorization = null
         localStorage.clear();
         setUser(null);
