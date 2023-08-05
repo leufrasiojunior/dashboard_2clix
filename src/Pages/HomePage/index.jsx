@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/auth'
 import { BaseResumida } from '../../services/api';
-import Nav from '../../assets/Navbar';
+import Nav from '../../components/Navbar';
 
 function HomePage() {
 
