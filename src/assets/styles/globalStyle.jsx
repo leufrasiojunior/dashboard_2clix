@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
+
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -7,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     border: 0;
     outline: 0;
-    font-family: "Poppins",sans-serif;
+    font-family: 'Archivo', sans-serif;
     body{
       width: 100vw;
       height: 100vh;
