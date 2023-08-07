@@ -13,10 +13,18 @@ function HomePage() {
     useEffect(() => {
         document.title = "2Clix - Dashboard";
         (async () => {
-            const response = await BaseResumida();
-            setNotas(response.data.result);
-            setisLoading(false);
-        })();
+            try {
+                const response = await BaseResumida();
+                const responsse = await BaseResumida();
+                const responssse = await BaseResumida();
+                setNotas(response.data.result);
+                setisLoading(false);
+            } catch (err) {
+                console.log("erro");
+                console.log(err.response.status);
+            }
+        }
+        )();
     }, [])
 
     const handleLogout = () => {
