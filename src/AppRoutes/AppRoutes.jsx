@@ -3,6 +3,7 @@ import LoginPage from '../Pages/LoginPage'
 import HomePage from '../Pages/HomePage'
 import { AuthProvider, AuthContext } from "../contexts/auth";
 import { useContext } from "react";
+import TestSpinner from "../Pages/TestSpinner";
 
 const AppRoutes = () => {
     const Private = ({ children }) => {
@@ -23,6 +24,11 @@ const AppRoutes = () => {
                         exact
                         path="/"
                         element={<LoginPage />}
+                    />
+                    <Route
+                        exact
+                        path="/test"
+                        element={<TestSpinner />}
                     />
                     <Route
                         exact

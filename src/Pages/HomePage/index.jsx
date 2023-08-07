@@ -3,18 +3,19 @@ import { useContext } from 'react'
 import { AuthContext } from '../../contexts/auth'
 import { BaseResumida } from '../../services/api';
 import Nav from '../../components/Navbar';
+import Modal from '../../components/LoagingComponent/modal';
 
 function HomePage() {
-
     const { logout } = useContext(AuthContext);
     const [notas, setNotas] = useState([])
+    const [openModal, setOpenModal] = useState(true);
     const [isLoading, setisLoading] = useState(true)
     useEffect(() => {
+        document.title = "2Clix - Dashboard";
         (async () => {
             const response = await BaseResumida();
             setNotas(response.data.result);
             setisLoading(false);
-
         })();
     }, [])
 
@@ -23,12 +24,12 @@ function HomePage() {
     }
 
     if (isLoading) {
-        return <div>Carregando Notas...</div>;
+        return <Modal isOpen={openModal} />;
     }
     const uniqueAuthors = [...new Map(notas.map(v => [v.CRITERIO, v])).values()]
     return (
         <>
-            <Nav></Nav>
+            <Nav />
             <button onClick={handleLogout}>Logout</button>
             <ul>
                 {uniqueAuthors.map(d => (<li key={d.CODIGO_AVALIACAO}>{d.CRITERIO}</li>))}

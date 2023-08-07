@@ -58,8 +58,6 @@ text-align: center;
 }
 
 `
-
-
 export const InputCustomizado = styled.input`
 color: #fff;
 font-size: 20px;
