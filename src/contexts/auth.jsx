@@ -29,10 +29,12 @@ export const AuthProvider = ({ children }) => {
             setUser(recoveredUser)
             api.defaults.headers.Authorization = `Bearer ${token}`;
         }
+
         setisLoading(false)
     }, [])
 
     const newLogin = async (usuario, senha) => {
+        setisLoading(false)
         const response = await CreateSession(usuario, senha)
         const token = response.data.token;
         const loggedUser = response.data.token
@@ -40,16 +42,14 @@ export const AuthProvider = ({ children }) => {
         const futureDateTime = new Date(currentDateTime);
         futureDateTime.setHours(currentDateTime.getHours() + 24)
 
-        localStorage.setItem('Logged', currentDateTime);
+        // localStorage.setItem('Logged', currentDateTime);
         localStorage.setItem('ExpirationDate', futureDateTime);
         localStorage.setItem('token', loggedUser);
         api.defaults.headers.Authorization = `Bearer ${token}`;
         setUser(loggedUser)
         navigate("/home")
-
     }
     const logout = () => {
-        // console.log('logout');
         api.defaults.headers.Authorization = null
         localStorage.clear();
         setUser(null);
@@ -59,6 +59,7 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider
             value={{ authenticated: !!user, user, isLoading, newLogin, logout }}        >
             {children}
+
         </AuthContext.Provider>
     )
 }

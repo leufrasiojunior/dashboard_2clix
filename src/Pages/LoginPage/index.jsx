@@ -2,13 +2,17 @@ import { useEffect } from 'react'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth'
 import { Container, Form, BotaoCustomizado, InputCustomizado, Eye, Eyeicon } from './style';
+import { LoadingSpinner } from '../../components/Spinner';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye'
 import { useNavigate } from "react-router-dom";
+import Modal from '../../components/LoagingComponent/modal';
 
 function LoginPage() {
+    const [isLoading, setisLoaging] = useState(true)
     const { authenticated, newLogin } = useContext(AuthContext);
+    const [openModal, setOpenModal] = useState(false);
     const [login, setLogin] = useState('')
     const [senha, setSenha] = useState('')
     const [type, setType] = useState('password');
@@ -19,6 +23,7 @@ function LoginPage() {
     const DateFinal = Date.parse(localStorage.getItem('ExpirationDate'))
 
     const handleSubmit = (e) => {
+        // <Modal isOpen={openModal} />
         e.preventDefault()
         newLogin(login, senha);
     }
@@ -30,7 +35,6 @@ function LoginPage() {
             setIcon(eyeOff)
             setType('password')
         }
-
     };
 
     useEffect(() => {
@@ -38,6 +42,17 @@ function LoginPage() {
             navigate("/home")
         }
     }, [])
+    document.title = "Dashboard - Login";
+
+    const modaltest = () => {
+        setOpenModal(true)
+        if (openModal) {
+            <Modal isOpen={openModal} />
+        }
+    }
+
+    // console.log(openModal)   
+
     return (
         <Container>
             <Form className="form" onSubmit={handleSubmit}>
@@ -61,8 +76,9 @@ function LoginPage() {
                         <Icon className="absolute mr-10" icon={icon} size={25} />
                     </Eyeicon>
                 </Eye>
-                <BotaoCustomizado type="submit">Entrar</BotaoCustomizado>
+                <BotaoCustomizado type="submit" onClick={() => setOpenModal(true)}>Entrar</BotaoCustomizado>
             </Form >
+            <Modal isOpen={openModal} />
         </Container >
     )
 }
