@@ -15,12 +15,11 @@ function HomePage() {
         (async () => {
             try {
                 const response = await BaseResumida();
-                const responsse = await BaseResumida();
-                const responssse = await BaseResumida();
                 setNotas(response.data.result);
                 setisLoading(false);
             } catch (err) {
                 console.log("erro");
+                console.log(err)
                 console.log(err.response.status);
             }
         }
@@ -39,9 +38,13 @@ function HomePage() {
         <>
             <Nav />
             <button onClick={handleLogout}>Logout</button>
-            <ul>
-                {uniqueAuthors.map(d => (<li key={d.CODIGO_AVALIACAO}>{d.CRITERIO}</li>))}
-            </ul>
+            {uniqueAuthors.map(d => ((
+                <ul key={d.CODIGO_CRITERIO}>
+                    <li key={d.COD_MONITORIA}>
+                        {d.CRITERIO}
+                    </li>
+                </ul>
+            )))}
         </>
     )
 }
