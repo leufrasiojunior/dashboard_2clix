@@ -10,5 +10,5 @@ export const CreateSession = async (login, senha) => {
 }
 
 export const BaseResumida = async () => {
-    return api.get('Reports/ExtracaoBaseResumida?Dtinicio=2023-07-03&DtFim=2023-07-03&codTipoFicha=1')
+    return api.get('Reports/ExtracaoBaseResumida?Dtinicio=2023-07-01&DtFim=2023-07-31&codTipoFicha=1')
 }

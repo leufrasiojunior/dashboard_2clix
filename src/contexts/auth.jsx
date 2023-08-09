@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api, CreateSession } from "../services/api";
+import Modal from "../components/LoagingComponent/modal";
+
 
 export const AuthContext = createContext();
 
@@ -53,8 +55,15 @@ export const AuthProvider = ({ children }) => {
             setisLoading(false)
             navigate("/home")
         } catch (err) {
-            setOpenModal(false)
-            console.log(err.response.status);
+            const typeerror = err.response.status
+            if (err.response.status === 401) {
+                alert("Usuário ou senha inválidos")
+                window.location.reload(true);
+            } else {
+                alert(`Informe o erro para o administrador: ${typeerror}`);
+                window.location.reload(true);
+
+            }
         };
 
     }
