@@ -13,10 +13,18 @@ function HomePage() {
     useEffect(() => {
         document.title = "2Clix - Dashboard";
         (async () => {
-            const response = await BaseResumida();
-            setNotas(response.data.result);
-            setisLoading(false);
-        })();
+            try {
+                const response = await BaseResumida();
+                setNotas(response.data.result);
+                setisLoading(false);
+                console.log(response.data.result)
+            } catch (err) {
+                console.log("erro");
+                console.log(err)
+                console.log(err.response.status);
+            }
+        }
+        )();
     }, [])
 
     const handleLogout = () => {
@@ -26,14 +34,20 @@ function HomePage() {
     if (isLoading) {
         return <Modal isOpen={openModal} />;
     }
-    const uniqueAuthors = [...new Map(notas.map(v => [v.CRITERIO, v])).values()]
+    const uniqueCriteries = [...new Map(notas.map(v => [v.FORMULARIO, v])).values()]
     return (
         <>
             <Nav />
             <button onClick={handleLogout}>Logout</button>
-            <ul>
-                {uniqueAuthors.map(d => (<li key={d.CODIGO_AVALIACAO}>{d.CRITERIO}</li>))}
-            </ul>
+            {uniqueCriteries.map(d => ((
+                <ul key={d.CODIGO_CRITERIO}>
+                    <li key={d.COD_MONITORIA}>
+                        {/* {d.CRITERIO} ;  */}
+                        {d.FORMULARIO}
+                    </li>
+                </ul >
+            )))
+            }
         </>
     )
 }

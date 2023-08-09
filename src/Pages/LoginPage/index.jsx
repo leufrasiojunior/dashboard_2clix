@@ -23,7 +23,6 @@ function LoginPage() {
     const DateFinal = Date.parse(localStorage.getItem('ExpirationDate'))
 
     const handleSubmit = (e) => {
-        // <Modal isOpen={openModal} />
         e.preventDefault()
         newLogin(login, senha);
     }
@@ -43,15 +42,6 @@ function LoginPage() {
         }
     }, [])
     document.title = "Dashboard - Login";
-
-    const modaltest = () => {
-        setOpenModal(true)
-        if (openModal) {
-            <Modal isOpen={openModal} />
-        }
-    }
-
-    // console.log(openModal)   
 
     return (
         <Container>

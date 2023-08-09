@@ -1,24 +1,15 @@
 
 import { NavStyle, UlStyle } from './style'
 
-function Nav() {
-    const navlinks = [
-        { name: "Início", link: "/" },
-        { name: "Relatórios", link: "/relatorios" },
-        { name: "Pesquisar", link: "/search" },
-    ]
+export default function Nav() {
+
     return (
-        <NavStyle key={navlinks.name}>
+        <NavStyle>
             <UlStyle>
-                {navlinks.map(link =>
-                    <li className='text-yellow-300'>
-                        <a href={link.link}>{link.name}</a>
-                    </li>
-                )
-                }
+                <li><a href="/">Início</a></li>
+                <li><a href="/relatorios">Relatorios</a></li>
+                <li><a href="/search">Buscar</a></li>
             </UlStyle>
         </NavStyle>
     )
 }
-
-export default Nav
