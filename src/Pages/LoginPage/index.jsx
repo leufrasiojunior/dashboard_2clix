@@ -2,11 +2,10 @@ import { useEffect } from 'react'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth'
 import { Container, Form, BotaoCustomizado, InputCustomizado, Eye, Eyeicon } from './style';
-import { LoadingSpinner } from '../../components/Spinner';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye'
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Modal from '../../components/LoagingComponent/modal';
 
 function LoginPage() {

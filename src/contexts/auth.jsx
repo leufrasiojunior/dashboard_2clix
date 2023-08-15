@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api, CreateSession } from "../services/api";
-import Modal from "../components/LoagingComponent/modal";
 
 
 export const AuthContext = createContext();
@@ -11,8 +10,6 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [isLoading, setisLoading] = useState(true);
-    const [openModal, setOpenModal] = useState(false);
-
 
     useEffect(() => {
         const recoveredUser = localStorage.getItem("token");
@@ -75,9 +72,8 @@ export const AuthProvider = ({ children }) => {
     };
     return (
         <AuthContext.Provider
-            value={{ authenticated: !!user, user, isLoading, newLogin, logout }}        >
+            value={{ authenticated: !!user, user, isLoading, newLogin, logout }}>
             {children}
-
         </AuthContext.Provider>
     )
 }

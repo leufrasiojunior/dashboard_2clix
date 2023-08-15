@@ -1,15 +1,21 @@
+import { NavStyle, Logo, NavContainer } from "./style"
 
-import { NavStyle, UlStyle } from './style'
 
-export default function Nav() {
-
+export function Nav() {
     return (
         <NavStyle>
-            <UlStyle>
+            <Logo>
+                <img
+                    src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+                    alt="logo.png"
+                    height="40px"
+                />
+            </Logo>
+            <NavContainer>
                 <li><a href="/">Início</a></li>
                 <li><a href="/relatorios">Relatorios</a></li>
                 <li><a href="/search">Buscar</a></li>
-            </UlStyle>
+            </NavContainer>
         </NavStyle>
     )
 }

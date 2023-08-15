@@ -11,7 +11,7 @@ const Container = styled.div`
 const Loader = styled.div`
   border-width: 0.5rem;
   border-style: solid;
-  border-color: transparent #FFAC48;
+  border-color:transparent #FFAC48 ;
   width: 3.625rem;
   height: 3.625rem;
   border-radius: 50%;
